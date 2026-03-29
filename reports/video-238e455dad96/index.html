@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Short Game Data | Volleyball AI Report</title>
+    <style>
+      :root {
+        --bg: #f4efe4;
+        --ink: #162022;
+        --muted: #55666a;
+        --panel: rgba(255, 251, 245, 0.9);
+        --line: rgba(22, 32, 34, 0.12);
+        --accent: #d95d39;
+        --accent-soft: #f2b880;
+        --accent-deep: #244b5a;
+        --good: #2c7a52;
+        --warn: #b45f06;
+        --shadow: 0 24px 60px rgba(27, 33, 36, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(217, 93, 57, 0.18), transparent 30%),
+          radial-gradient(circle at right center, rgba(36, 75, 90, 0.12), transparent 28%),
+          linear-gradient(180deg, #f8f3e9 0%, var(--bg) 100%);
+      }
+
+      main {
+        width: min(1200px, calc(100% - 32px));
+        margin: 32px auto 48px;
+      }
+
+      .hero {
+        display: grid;
+        gap: 20px;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: linear-gradient(135deg, rgba(255,255,255,0.86), rgba(244, 236, 221, 0.96));
+        box-shadow: var(--shadow);
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.78rem;
+        color: var(--accent-deep);
+      }
+
+      h1, h2, h3 {
+        margin: 0;
+      }
+
+      .hero p {
+        margin: 0;
+      }
+
+      .meta-grid,
+      .metric-grid,
+      .team-grid,
+      .split-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .meta-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .metric-grid {
+        margin-top: 18px;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      }
+
+      .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      .split-grid {
+        margin-top: 22px;
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: start;
+      }
+
+      .panel,
+      .metric,
+      .meta,
+      .team-card {
+        padding: 18px;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .meta strong,
+      .metric strong {
+        display: block;
+        margin-top: 6px;
+        font-size: 1.05rem;
+      }
+
+      .metric .value {
+        font-size: 2rem;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      video {
+        width: 100%;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: #111;
+      }
+
+      .distribution {
+        margin-top: 14px;
+      }
+
+      .distribution h3 {
+        margin-bottom: 10px;
+      }
+
+      .bar-row {
+        margin-bottom: 12px;
+      }
+
+      .bar-row:last-child {
+        margin-bottom: 0;
+      }
+
+      .bar-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+      }
+
+      .bar-track {
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(22, 32, 34, 0.08);
+        overflow: hidden;
+      }
+
+      .bar-fill {
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 14px;
+        font-size: 0.94rem;
+      }
+
+      th,
+      td {
+        padding: 10px 8px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        color: var(--accent-deep);
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 10px;
+        border-radius: 999px;
+        background: rgba(36, 75, 90, 0.08);
+        color: var(--accent-deep);
+        font-size: 0.84rem;
+      }
+
+      .success {
+        color: var(--good);
+        font-weight: 600;
+      }
+
+      .failure {
+        color: var(--warn);
+        font-weight: 600;
+      }
+
+      a {
+        color: var(--accent-deep);
+      }
+
+      @media (max-width: 860px) {
+        .split-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Volleyball AI Local Report</p>
+          <h1>Short Game Data</h1>
+          <p class="muted">Static local report generated from a direct video-path analysis run.</p>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta">
+            <span class="muted">Video source</span>
+            <strong>/Users/pengjujin/projects/volleyball_ai/data/short_game_data.mov</strong>
+          </div>
+          <div class="meta">
+            <span class="muted">Source type</span>
+            <strong>local_path</strong>
+          </div>
+          <div class="meta">
+            <span class="muted">Processing mode</span>
+            <strong>live_gemini</strong>
+          </div>
+          <div class="meta">
+            <span class="muted">Ruleset</span>
+            <strong>6-player</strong>
+          </div>
+          <div class="meta">
+            <span class="muted">Generated at</span>
+            <strong>2026-03-29T18:02:30.371819+00:00</strong>
+          </div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric">
+            <span class="muted">Total sets</span>
+            <strong class="value">1</strong>
+          </div>
+          <div class="metric">
+            <span class="muted">Success rate</span>
+            <strong class="value">100%</strong>
+          </div>
+          <div class="metric">
+            <span class="muted">Top tempo</span>
+            <strong class="value">high/slow</strong>
+          </div>
+          <div class="metric">
+            <span class="muted">Returned events</span>
+            <strong class="value">1</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="split-grid">
+        <article class="panel">
+          <p class="eyebrow">Video</p>
+          <h2>Match clip</h2>
+          <p class="muted">If the video does not load inline, open it directly from the link below.</p>
+          <div style="margin-top: 14px;">
+            <video controls preload="metadata" src="file:///Users/pengjujin/projects/volleyball_ai/data/short_game_data.mov"></video>
+          </div>
+          <p style="margin-top: 12px;">
+            <a href="file:///Users/pengjujin/projects/volleyball_ai/data/short_game_data.mov">Open source video directly</a>
+          </p>
+        </article>
+
+        <article class="panel">
+          <p class="eyebrow">Overview</p>
+          <h2>Setter output</h2>
+          
+      <div class="distribution">
+        <h3>Target zone distribution</h3>
+        
+            <div class="bar-row">
+              <div class="bar-meta">
+                <span>4</span>
+                <strong>1</strong>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 100%;"></div>
+              </div>
+            </div>
+            
+      </div>
+    
+          
+      <div class="distribution">
+        <h3>Tempo distribution</h3>
+        
+            <div class="bar-row">
+              <div class="bar-meta">
+                <span>high/slow</span>
+                <strong>1</strong>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" style="width: 100%;"></div>
+              </div>
+            </div>
+            
+      </div>
+    
+        </article>
+      </section>
+
+      <section class="panel" style="margin-top: 22px;">
+        <p class="eyebrow">Teams</p>
+        <h2>By team side</h2>
+        <div class="team-grid" style="margin-top: 14px;">
+          
+      <article class="team-card">
+        <p class="muted" style="margin: 0 0 8px;">far side</p>
+        <strong style="font-size: 1.5rem;">1/1</strong>
+        <p class="muted" style="margin: 6px 0 0;">Attackable sets: 100%</p>
+        <p class="muted" style="margin: 6px 0 0;">Top tempo: high/slow</p>
+      </article>
+    
+        </div>
+      </section>
+
+      <section class="panel" style="margin-top: 22px;">
+        <p class="eyebrow">Events</p>
+        <h2>Detected set timeline</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Team</th>
+              <th>Zone</th>
+              <th>Tempo</th>
+              <th>Result</th>
+              <th>Confidence</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+      <tr>
+        <td>0:06</td>
+        <td>far side</td>
+        <td>4</td>
+        <td>high/slow</td>
+        <td><span class="success">Attackable</span></td>
+        <td>90%</td>
+        <td><span class="muted">None</span></td>
+      </tr>
+    
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

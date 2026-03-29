@@ -1,0 +1,61 @@
+{
+  "video_asset_id": "video-7fc34957200a",
+  "title": "Short Game Data",
+  "video_path": "/Users/pengjujin/projects/volleyball_ai/data/short_game_data.mov",
+  "video_url": "file:///Users/pengjujin/projects/volleyball_ai/data/short_game_data.mov",
+  "ruleset_variant": "6-player",
+  "generated_at": "2026-03-29T17:40:56.059151+00:00",
+  "mode": "stub",
+  "analytics": {
+    "video_asset_id": "video-7fc34957200a",
+    "ruleset_variant": "6-player",
+    "generated_at": "2026-03-29T17:40:56.059028Z",
+    "overall": {
+      "team_side": "unknown",
+      "total_set_attempts": 1,
+      "successful_sets": 1,
+      "success_rate": 1.0,
+      "tempo_distribution": {
+        "quick": 1
+      },
+      "target_zone_distribution": {
+        "zone_4": 1
+      }
+    },
+    "by_team": [
+      {
+        "team_side": "near_side",
+        "total_set_attempts": 1,
+        "successful_sets": 1,
+        "success_rate": 1.0,
+        "tempo_distribution": {
+          "quick": 1
+        },
+        "target_zone_distribution": {
+          "zone_4": 1
+        }
+      }
+    ]
+  },
+  "set_events": [
+    {
+      "set_event_id": "set-f3ac81850bd6583d879874ea412d2a41",
+      "video_asset_id": "video-7fc34957200a",
+      "rally_segment_id": null,
+      "source_candidate_clip_id": "video-7fc34957200a-whole-video",
+      "timestamp_s": 0.5,
+      "setter_team_side": "near_side",
+      "target_zone": "zone_4",
+      "set_type": "transition",
+      "set_success": true,
+      "success_reason": "attackable_ball",
+      "set_tempo": "quick",
+      "setter_court_x": 4.0,
+      "setter_court_y": 2.9,
+      "confidence": 0.95,
+      "notes": "stubbed Gemini analysis",
+      "created_at": "2026-03-29T17:40:56.058877Z"
+    }
+  ],
+  "low_confidence_candidate_clips": []
+}

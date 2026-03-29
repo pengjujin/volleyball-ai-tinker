@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+.DS_Store
+*.swp
+
+# Data files (large video/media assets)
+data/
+*.mp4
+*.mov
+*.avi
+*.mkv
