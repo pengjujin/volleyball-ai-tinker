@@ -2,6 +2,9 @@
 
 Volleyball AI is a full-stack project for analyzing full-match volleyball videos and surfacing setter-focused analytics in a web dashboard. The current scaffold covers Milestone 1 from the implementation plan: backend and frontend app shells, core schemas, and repo-level quality commands.
 
+<img width="1205" height="1204" alt="image" src="https://github.com/user-attachments/assets/4509caba-763e-4a89-8d52-6467c4e11a60" />
+
+
 ## Current Scope
 
 - Full-match video workflow
